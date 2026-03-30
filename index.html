@@ -3,325 +3,369 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Santiago's Way Journey — Simple, honest clothing rooted in the natural world.">
 <title>Santiago's Way Journey</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --soil:#3b2a1a; --bark:#5c3d2e; --moss:#4a5c3a; --sage:#7a8c6a;
-    --stone:#a89880; --sand:#d4c4a8; --linen:#f0ebe0; --cream:#faf7f2;
-    --leaf:#6b7c52; --sky:#c8d5c0;
-    --danger:#8b3a2a; --warn:#7a6030;
+    --soil:  #3b2a1a;
+    --bark:  #5c3d2e;
+    --moss:  #4a5c3a;
+    --sage:  #7a8c6a;
+    --stone: #a89880;
+    --sand:  #d4c4a8;
+    --linen: #f0ebe0;
+    --cream: #faf7f2;
+    --sky:   #c8d5c0;
+    --danger:#8b3a2a;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--soil);overflow-x:hidden;font-weight:300;}
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--soil); overflow-x:hidden; font-weight:300; }
 
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;background:rgba(250,247,242,0.93);backdrop-filter:blur(16px);}
-  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;letter-spacing:.15em;color:var(--soil);text-decoration:none;text-transform:uppercase;}
-  .nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center;}
-  .nav-links a,.nav-links button.nl{color:var(--bark);text-decoration:none;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400;transition:color .3s;position:relative;background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;}
-  .nav-links a::after,.nav-links button.nl::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--moss);transform:scaleX(0);transition:transform .3s;transform-origin:left;}
-  .nav-links a:hover,.nav-links button.nl:hover{color:var(--moss);}
-  .nav-links a:hover::after,.nav-links button.nl:hover::after{transform:scaleX(1);}
+  /* ── UTILITY ── */
+  .label { font-size:.7rem; letter-spacing:.35em; text-transform:uppercase; color:var(--sage); margin-bottom:.8rem; display:block; }
+  .heading { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,4rem); font-weight:300; line-height:1.1; color:var(--soil); }
+  .heading em { font-style:italic; color:var(--moss); }
 
-  /* PAGES */
-  .page{display:none;} .page.active{display:block;}
-
-  /* HERO */
-  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
-  .hero-left{display:flex;flex-direction:column;justify-content:center;padding:10rem 4rem 5rem 3rem;position:relative;z-index:2;}
-  .hero-eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:2rem;animation:fadeIn 1s ease both;}
-  .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,5.5vw,6.5rem);font-weight:300;line-height:1.05;color:var(--soil);animation:fadeIn 1s .15s ease both;}
-  .hero h1 em{font-style:italic;color:var(--moss);}
-  .hero-desc{margin-top:2rem;font-size:.95rem;line-height:1.9;color:var(--stone);max-width:380px;animation:fadeIn 1s .3s ease both;}
-  .hero-actions{margin-top:2.8rem;display:flex;gap:1.5rem;align-items:center;animation:fadeIn 1s .45s ease both;}
-  .btn-main{display:inline-block;padding:.85rem 2.2rem;background:var(--moss);color:var(--cream);text-decoration:none;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;transition:background .3s,transform .3s;border:none;cursor:pointer;font-family:'Jost',sans-serif;}
-  .btn-main:hover{background:var(--soil);transform:translateY(-2px);}
-  .btn-ghost{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bark);text-decoration:none;border-bottom:1px solid var(--sand);padding-bottom:2px;transition:color .3s,border-color .3s;cursor:pointer;background:none;border-left:none;border-top:none;border-right:none;font-family:'Jost',sans-serif;}
-  .btn-ghost:hover{color:var(--moss);border-bottom-color:var(--moss);}
-  .hero-right{position:relative;overflow:hidden;background:var(--sky);}
-  .hero-right svg{width:100%;height:100%;position:absolute;inset:0;}
-
-  /* DIVIDER */
-  .divider{display:flex;align-items:center;gap:1.5rem;padding:2.5rem 3rem;background:var(--linen);}
-  .divider-line{flex:1;height:1px;background:var(--sand);}
-  .divider span{font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:.25em;text-transform:uppercase;color:var(--stone);white-space:nowrap;font-style:italic;}
-
-  /* SECTIONS */
-  section{padding:6rem 3rem;}
-  .label{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--sage);margin-bottom:.8rem;}
-  .heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,4rem);font-weight:300;line-height:1.1;color:var(--soil);}
-  .heading em{font-style:italic;color:var(--moss);}
-
-  /* CATEGORIES */
-  .categories{background:var(--cream);}
-  .categories-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;margin-top:3.5rem;background:var(--sand);}
-  .cat-item{background:var(--linen);padding:3rem 2rem;text-decoration:none;display:flex;flex-direction:column;gap:.5rem;transition:background .3s;position:relative;overflow:hidden;}
-  .cat-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--moss);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
-  .cat-item:hover{background:var(--sky);} .cat-item:hover::after{transform:scaleX(1);}
-  .cat-glyph{font-size:1.8rem;margin-bottom:.5rem;}
-  .cat-item h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--soil);}
-  .cat-item p{font-size:.8rem;color:var(--stone);}
-  .cat-arrow{margin-top:auto;font-size:.75rem;color:var(--sage);letter-spacing:.1em;padding-top:1rem;}
-
-  /* PRODUCTS */
-  .featured{background:var(--linen);}
-  .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2rem;margin-top:3.5rem;}
-  .product-card{display:flex;flex-direction:column;cursor:pointer;}
-  .product-visual{aspect-ratio:3/4;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-  .product-visual img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
-  .product-emoji{font-size:4rem;opacity:.4;transition:transform .5s;}
-  .product-card:hover .product-visual img,.product-card:hover .product-emoji{transform:scale(1.06);}
-  .product-tag{position:absolute;top:1rem;left:1rem;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);background:var(--cream);padding:.3rem .75rem;z-index:2;}
-  .product-tag.sale{color:var(--danger);}
-  .product-info{padding:1.2rem 0 0;}
-  .product-info h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--soil);}
-  .product-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.6rem;}
-  .product-price{font-size:.9rem;color:var(--bark);}
-  .product-old{font-size:.8rem;color:var(--stone);text-decoration:line-through;margin-left:.5rem;}
-  .add-btn{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--moss);background:none;border:1px solid var(--sage);padding:.45rem 1rem;cursor:pointer;transition:background .3s,color .3s;font-family:'Jost',sans-serif;}
-  .add-btn:hover{background:var(--moss);color:var(--cream);border-color:var(--moss);}
-  .empty-products{text-align:center;padding:4rem 2rem;color:var(--stone);font-size:.9rem;letter-spacing:.1em;grid-column:1/-1;}
-
-  /* STORY */
-  .story{background:var(--moss);padding:6rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-  .story-text .label{color:rgba(200,213,192,.8);}
-  .story-text .heading{color:var(--cream);} .story-text .heading em{color:var(--sand);}
-  .story-text p{margin-top:1.5rem;font-size:.95rem;line-height:2;color:rgba(240,235,224,.7);max-width:400px;}
-  .story-text a{display:inline-block;margin-top:2rem;color:var(--sand);text-decoration:none;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid rgba(212,196,168,.35);padding-bottom:2px;transition:border-color .3s;cursor:pointer;}
-  .story-text a:hover{border-bottom-color:var(--sand);}
-  .story-visual{display:flex;justify-content:center;}
-  .story-visual svg{width:100%;max-width:320px;}
-
-  /* PILLARS */
-  .pillars{background:var(--cream);}
-  .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:4rem;}
-  .pillar{border-top:1px solid var(--sand);padding-top:2rem;}
-  .pillar-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--sand);line-height:1;margin-bottom:1rem;}
-  .pillar h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--soil);margin-bottom:.7rem;}
-  .pillar p{font-size:.88rem;line-height:1.85;color:var(--stone);}
-
-  /* ABOUT */
-  .about-hero{min-height:60vh;display:flex;align-items:flex-end;padding:10rem 3rem 5rem;background:var(--moss);position:relative;overflow:hidden;}
-  .about-hero svg{position:absolute;inset:0;width:100%;height:100%;opacity:.18;}
-  .about-hero-text{position:relative;z-index:2;max-width:640px;}
-  .about-hero-text .label{color:rgba(200,213,192,.8);}
-  .about-hero-text .heading{color:var(--cream);font-size:clamp(3rem,6vw,6rem);}
-  .about-hero-text .heading em{color:var(--sand);}
-  .about-body{padding:6rem 3rem;max-width:760px;margin:0 auto;}
-  .about-body p{font-size:1.05rem;line-height:2.1;color:var(--stone);margin-bottom:2rem;}
-  .about-body p strong{color:var(--soil);font-weight:500;}
-  .about-values{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:4rem;padding-top:4rem;border-top:1px solid var(--sand);}
-  .about-value .label{margin-bottom:.5rem;}
-  .about-value h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--soil);margin-bottom:.8rem;}
-  .about-value p{font-size:.88rem;line-height:1.85;color:var(--stone);}
-
-  /* CONTACT */
-  .contact-hero{min-height:45vh;display:flex;align-items:flex-end;padding:10rem 3rem 4rem;background:var(--linen);}
-  .contact-hero-text .label{margin-bottom:.8rem;}
-  .contact-hero-text .heading{font-size:clamp(2.5rem,5vw,5rem);}
-  .contact-body{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding:5rem 3rem;align-items:start;}
-  .contact-info h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--soil);margin-bottom:1.5rem;}
-  .contact-info p{font-size:.9rem;line-height:1.9;color:var(--stone);margin-bottom:1rem;}
-  .contact-detail{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem;}
-  .contact-item{border-top:1px solid var(--sand);padding-top:1rem;}
-  .contact-item span{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);display:block;margin-bottom:.3rem;}
-  .contact-item p{font-size:.9rem;color:var(--soil);}
-  .contact-form{display:flex;flex-direction:column;gap:1.4rem;}
-  .form-group{display:flex;flex-direction:column;gap:.5rem;}
-  .form-group label{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--sage);}
-  .form-group input,.form-group textarea{background:var(--linen);border:1px solid var(--sand);padding:.9rem 1.1rem;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--soil);outline:none;transition:border-color .3s;resize:none;}
-  .form-group input:focus,.form-group textarea:focus{border-color:var(--moss);}
-  .form-submit{align-self:flex-start;padding:.85rem 2.5rem;background:var(--moss);color:var(--cream);border:none;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s;}
-  .form-submit:hover{background:var(--soil);}
-
-  /* FOOTER */
-  footer{background:var(--soil);padding:4rem 3rem 2.5rem;}
-  .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(212,196,168,.12);}
-  .footer-brand .logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;letter-spacing:.12em;color:var(--linen);margin-bottom:.8rem;}
-  .footer-brand p{font-size:.82rem;line-height:1.8;color:rgba(212,196,168,.5);max-width:220px;}
-  .footer-col h5{font-size:.67rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem;}
-  .footer-col ul{list-style:none;} .footer-col li{margin-bottom:.65rem;}
-  .footer-col a,.footer-col .fp{color:rgba(212,196,168,.5);text-decoration:none;font-size:.85rem;transition:color .3s;background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;padding:0;}
-  .footer-col a:hover,.footer-col .fp:hover{color:var(--sand);}
-  .footer-bottom{padding-top:2rem;display:flex;justify-content:space-between;font-size:.75rem;color:rgba(212,196,168,.3);letter-spacing:.05em;flex-wrap:wrap;gap:1rem;}
-
-  /* ══════════════════════════════════════
- 
-  ══════════════════════════════════════ */
-  #vault-overlay{
-    position:fixed;inset:0;z-index:9000;
-    background:#0d0f0a;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    font-family:'Jost',sans-serif;
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.4rem 3rem;
+    background:rgba(250,247,242,0.95);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(212,196,168,.15);
   }
-  #vault-overlay.open{display:flex;}
-
-  /* Step panels */
-  .vault-step{display:none;flex-direction:column;align-items:center;width:100%;max-width:420px;padding:0 1.5rem;}
-  .vault-step.active{display:flex;}
-
-  .vault-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:.2em;color:rgba(200,213,192,.35);text-transform:uppercase;margin-bottom:3.5rem;}
-  .vault-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#d4c4a8;margin-bottom:.4rem;text-align:center;}
-  .vault-sub{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(160,150,130,.5);text-align:center;margin-bottom:2.2rem;}
-
-  .vault-input{
-    width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,196,168,.18);
-    padding:.9rem 1.2rem;color:#d4c4a8;font-family:'Jost',sans-serif;font-size:.9rem;
-    outline:none;transition:border-color .3s;letter-spacing:.05em;margin-bottom:.8rem;
+  .nav-logo {
+    font-family:'Cormorant Garamond',serif; font-size:1.15rem;
+    font-weight:400; letter-spacing:.15em; color:var(--soil);
+    text-transform:uppercase; cursor:pointer; user-select:none;
   }
-  .vault-input:focus{border-color:rgba(106,124,82,.7);}
-  .vault-input::placeholder{color:rgba(160,150,130,.3);}
-
-  .vault-btn{
-    width:100%;padding:.9rem;background:rgba(74,92,58,.8);color:#d4c4a8;border:none;
-    font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;
-    cursor:pointer;transition:background .3s;margin-top:.4rem;
+  .nav-links { display:flex; gap:2rem; list-style:none; align-items:center; }
+  .nav-links li { position:relative; }
+  .nav-btn {
+    color:var(--bark); font-size:.76rem; letter-spacing:.18em;
+    text-transform:uppercase; font-weight:400; transition:color .25s;
+    background:none; border:none; cursor:pointer; font-family:'Jost',sans-serif;
+    padding:.3rem 0; position:relative;
   }
-  .vault-btn:hover{background:rgba(74,92,58,1);}
-  .vault-btn:disabled{opacity:.4;cursor:not-allowed;}
+  .nav-btn::after {
+    content:''; position:absolute; bottom:-2px; left:0; right:0;
+    height:1px; background:var(--moss);
+    transform:scaleX(0); transform-origin:left; transition:transform .3s;
+  }
+  .nav-btn:hover { color:var(--moss); }
+  .nav-btn:hover::after { transform:scaleX(1); }
 
-  .vault-err{
-    font-size:.75rem;color:#c47a70;letter-spacing:.1em;text-align:center;
-    min-height:1.2rem;margin-top:.5rem;
+  /* Shop dropdown — hover based, won't close on scroll */
+  .nav-dropdown-wrap { position:relative; }
+  .nav-dropdown-wrap:hover .nav-dropdown { opacity:1; pointer-events:auto; transform:translateY(0); }
+  .nav-dropdown {
+    position:absolute; top:calc(100% + .8rem); left:50%; transform:translateX(-50%) translateY(-6px);
+    background:var(--cream); border:1px solid var(--sand);
+    min-width:190px; display:flex; flex-direction:column;
+    box-shadow:0 10px 36px rgba(0,0,0,.09);
+    opacity:0; pointer-events:none;
+    transition:opacity .25s, transform .25s;
+  }
+  .nav-dropdown button {
+    padding:.8rem 1.3rem; text-align:left; color:var(--bark);
+    font-size:.74rem; letter-spacing:.15em; text-transform:uppercase;
+    border:none; border-bottom:1px solid var(--linen);
+    background:none; cursor:pointer; font-family:'Jost',sans-serif;
+    transition:background .2s, color .2s; width:100%;
+  }
+  .nav-dropdown button:last-child { border-bottom:none; }
+  .nav-dropdown button:hover { background:var(--linen); color:var(--moss); }
+
+  /* ── PAGES ── */
+  .page { display:none; }
+  .page.active { display:block; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display:flex; align-items:center; gap:1.5rem;
+    padding:2.5rem 3rem; background:var(--linen);
+  }
+  .divider-line { flex:1; height:1px; background:var(--sand); }
+  .divider span {
+    font-family:'Cormorant Garamond',serif; font-size:.9rem;
+    letter-spacing:.25em; text-transform:uppercase;
+    color:var(--stone); white-space:nowrap; font-style:italic;
   }
 
-  /* Lockout bar */
-  .lockout-bar{
-    width:100%;background:rgba(139,58,42,.15);border:1px solid rgba(139,58,42,.3);
-    padding:.7rem 1rem;font-size:.72rem;color:#c47a70;letter-spacing:.1em;text-align:center;
-    margin-bottom:1rem;display:none;
+  /* ── HERO ── */
+  .hero {
+    min-height:100vh; display:grid; grid-template-columns:1fr 1fr;
+    position:relative; overflow:hidden;
+  }
+  .hero-left {
+    display:flex; flex-direction:column; justify-content:center;
+    padding:10rem 4rem 5rem 3rem; z-index:2;
+  }
+  .hero-eyebrow {
+    font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--sage); margin-bottom:2rem;
+    animation:fadeUp .9s ease both;
+  }
+  .hero h1 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(3.5rem,5.5vw,6.5rem);
+    font-weight:300; line-height:1.05;
+    animation:fadeUp .9s .12s ease both;
+  }
+  .hero h1 em { font-style:italic; color:var(--moss); }
+  .hero-desc {
+    margin-top:2rem; font-size:.95rem; line-height:1.9;
+    color:var(--stone); max-width:380px;
+    animation:fadeUp .9s .24s ease both;
+  }
+  .hero-actions {
+    margin-top:2.8rem; display:flex; gap:1.5rem; align-items:center;
+    flex-wrap:wrap; animation:fadeUp .9s .36s ease both;
+  }
+  .btn-main {
+    display:inline-block; padding:.85rem 2.2rem; background:var(--moss);
+    color:var(--cream); font-size:.78rem; letter-spacing:.2em;
+    text-transform:uppercase; font-weight:400;
+    transition:background .3s, transform .25s;
+    border:none; cursor:pointer; font-family:'Jost',sans-serif;
+  }
+  .btn-main:hover { background:var(--soil); transform:translateY(-2px); }
+  .btn-ghost {
+    font-size:.78rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--bark); border:none; border-bottom:1px solid var(--sand);
+    padding-bottom:2px; transition:color .3s, border-color .3s;
+    cursor:pointer; background:none; font-family:'Jost',sans-serif;
+  }
+  .btn-ghost:hover { color:var(--moss); border-bottom-color:var(--moss); }
+  .hero-right { position:relative; overflow:hidden; background:var(--sky); }
+  .hero-right svg { width:100%; height:100%; position:absolute; inset:0; }
+
+  /* ── CATEGORIES (Home) ── */
+  .categories { background:var(--cream); padding:6rem 3rem; }
+  .categories-inner {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:1.5px; margin-top:3.5rem; background:var(--sand);
+  }
+  .cat-card {
+    background:var(--linen); padding:3rem 2rem;
+    display:flex; flex-direction:column; gap:.5rem;
+    transition:background .3s; position:relative; overflow:hidden;
+    cursor:pointer; border:none; text-align:left;
+    width:100%; font-family:'Jost',sans-serif;
+  }
+  .cat-card::after {
+    content:''; position:absolute; bottom:0; left:0; right:0;
+    height:2px; background:var(--moss);
+    transform:scaleX(0); transform-origin:left; transition:transform .35s;
+  }
+  .cat-card:hover { background:var(--sky); }
+  .cat-card:hover::after { transform:scaleX(1); }
+  .cat-glyph { font-size:1.8rem; margin-bottom:.5rem; }
+  .cat-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; color:var(--soil); }
+  .cat-card p { font-size:.8rem; color:var(--stone); }
+  .cat-arrow { margin-top:auto; font-size:.75rem; color:var(--sage); letter-spacing:.1em; padding-top:1rem; }
+
+  /* ── PRODUCT GRID ── */
+  .shop-section { padding:5rem 3rem; background:var(--linen); }
+  .products-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    gap:2rem; margin-top:3rem;
+  }
+  .product-card { display:flex; flex-direction:column; }
+  .product-visual {
+    aspect-ratio:3/4; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .product-visual img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+  .product-emoji { font-size:4.5rem; opacity:.3; transition:transform .5s; user-select:none; }
+  .product-card:hover .product-visual img,
+  .product-card:hover .product-emoji { transform:scale(1.05); }
+  .product-tag {
+    position:absolute; top:1rem; left:1rem;
+    font-size:.65rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--moss); background:var(--cream); padding:.3rem .75rem; z-index:2;
+  }
+  .product-tag.sale { color:var(--danger); }
+  .product-info { padding:1.2rem 0 0; }
+  .product-info h4 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:400; color:var(--soil); }
+  .product-meta { display:flex; justify-content:space-between; align-items:center; margin-top:.6rem; }
+  .product-price { font-size:.9rem; color:var(--bark); }
+  .product-old { font-size:.8rem; color:var(--stone); text-decoration:line-through; margin-left:.5rem; }
+  .add-btn {
+    font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--moss); background:none; border:1px solid var(--sage);
+    padding:.45rem 1rem; cursor:pointer;
+    transition:background .3s, color .3s; font-family:'Jost',sans-serif;
+  }
+  .add-btn:hover { background:var(--moss); color:var(--cream); border-color:var(--moss); }
+  .empty-products {
+    text-align:center; padding:5rem 2rem; color:var(--stone);
+    font-size:.95rem; grid-column:1/-1; line-height:2;
+  }
+  .empty-products span { font-size:2.5rem; display:block; margin-bottom:1rem; opacity:.35; }
+
+  /* ── CATEGORY PAGE HERO ── */
+  .cat-page-hero {
+    padding:9rem 3rem 4rem; position:relative; overflow:hidden;
+  }
+  .cat-page-hero-bg {
+    position:absolute; inset:0; width:100%; height:100%;
+  }
+  .cat-page-hero-inner { position:relative; z-index:2; }
+  .cat-page-hero .label { color:rgba(200,213,192,.75); }
+  .cat-page-hero .heading { color:var(--cream); font-size:clamp(3rem,6vw,5.5rem); }
+  .cat-page-hero .heading em { color:var(--sand); }
+  .cat-page-hero p { margin-top:1.2rem; font-size:.95rem; color:rgba(240,235,224,.65); max-width:480px; line-height:1.9; }
+  .breadcrumb {
+    font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(200,213,192,.5); margin-bottom:1.5rem; cursor:pointer;
+    background:none; border:none; font-family:'Jost',sans-serif;
+    padding:0; display:inline-block; transition:color .2s;
+  }
+  .breadcrumb:hover { color:rgba(200,213,192,.9); }
+  .breadcrumb span { color:rgba(200,213,192,.8); }
+
+  /* ── STORY ── */
+  .story {
+    background:var(--moss); padding:6rem 3rem;
+    display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+  }
+  .story-text .label { color:rgba(200,213,192,.8); }
+  .story-text .heading { color:var(--cream); }
+  .story-text .heading em { color:var(--sand); }
+  .story-text p { margin-top:1.5rem; font-size:.95rem; line-height:2; color:rgba(240,235,224,.7); max-width:400px; }
+  .story-link {
+    display:inline-block; margin-top:2rem; color:var(--sand);
+    font-size:.78rem; letter-spacing:.2em; text-transform:uppercase;
+    border-bottom:1px solid rgba(212,196,168,.35); padding-bottom:2px;
+    transition:border-color .3s; cursor:pointer; background:none;
+    border-top:none; border-left:none; border-right:none; font-family:'Jost',sans-serif;
+  }
+  .story-link:hover { border-bottom-color:var(--sand); }
+  .story-visual { display:flex; justify-content:center; }
+  .story-visual svg { width:100%; max-width:320px; }
+
+  /* ── PILLARS ── */
+  .pillars { background:var(--cream); padding:6rem 3rem; }
+  .pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3rem; margin-top:4rem; }
+  .pillar { border-top:1px solid var(--sand); padding-top:2rem; }
+  .pillar-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--sand); line-height:1; margin-bottom:1rem; }
+  .pillar h4 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:var(--soil); margin-bottom:.7rem; }
+  .pillar p { font-size:.88rem; line-height:1.85; color:var(--stone); }
+
+  /* ── ABOUT ── */
+  .about-hero {
+    min-height:60vh; display:flex; align-items:flex-end;
+    padding:10rem 3rem 5rem; background:var(--moss); position:relative; overflow:hidden;
+  }
+  .about-hero svg { position:absolute; inset:0; width:100%; height:100%; opacity:.18; }
+  .about-hero-text { position:relative; z-index:2; max-width:640px; }
+  .about-hero-text .label { color:rgba(200,213,192,.8); }
+  .about-hero-text .heading { color:var(--cream); font-size:clamp(3rem,6vw,6rem); }
+  .about-hero-text .heading em { color:var(--sand); }
+  .about-body { padding:6rem 3rem; max-width:760px; margin:0 auto; }
+  .about-body p { font-size:1.05rem; line-height:2.1; color:var(--stone); margin-bottom:2rem; }
+  .about-body p strong { color:var(--soil); font-weight:500; }
+  .about-values { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; margin-top:4rem; padding-top:4rem; border-top:1px solid var(--sand); }
+  .about-value h3 { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--soil); margin-bottom:.8rem; }
+  .about-value p { font-size:.88rem; line-height:1.85; color:var(--stone); }
+
+  /* ── CONTACT ── */
+  .contact-hero {
+    min-height:55vh; display:flex; align-items:flex-end;
+    padding:10rem 3rem 5rem; background:var(--moss); position:relative; overflow:hidden;
+  }
+  .contact-hero svg { position:absolute; inset:0; width:100%; height:100%; opacity:.14; }
+  .contact-hero-text { position:relative; z-index:2; }
+  .contact-hero-text .label { color:rgba(200,213,192,.8); }
+  .contact-hero-text .heading { color:var(--cream); font-size:clamp(2.5rem,5vw,5rem); }
+  .contact-hero-text .heading em { color:var(--sand); }
+  .contact-body { padding:6rem 3rem; max-width:760px; }
+  .contact-body h3 {
+    font-family:'Cormorant Garamond',serif; font-size:1.8rem;
+    font-weight:400; color:var(--soil); margin-bottom:1rem;
+  }
+  .contact-body > p { font-size:.95rem; line-height:1.9; color:var(--stone); margin-bottom:3rem; max-width:500px; }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  .contact-item { border-top:1px solid var(--sand); padding:1.6rem 0; padding-right:2rem; }
+  .contact-item .ci-label { font-size:.68rem; letter-spacing:.3em; text-transform:uppercase; color:var(--sage); display:block; margin-bottom:.5rem; }
+  .contact-item p { font-size:.95rem; color:var(--soil); line-height:1.6; }
+  .contact-item a { color:var(--moss); text-decoration:none; }
+  .contact-item a:hover { text-decoration:underline; }
+
+  /* ── FOOTER ── */
+  footer { background:var(--soil); padding:4rem 3rem 2.5rem; }
+  .footer-top {
+    display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:3rem; padding-bottom:3rem;
+    border-bottom:1px solid rgba(212,196,168,.12);
+  }
+  .footer-brand .logo {
+    font-family:'Cormorant Garamond',serif; font-size:1.3rem;
+    font-weight:400; letter-spacing:.12em; color:var(--linen); margin-bottom:.8rem;
+  }
+  .footer-brand p { font-size:.82rem; line-height:1.8; color:rgba(212,196,168,.5); max-width:220px; }
+  .footer-col h5 { font-size:.67rem; letter-spacing:.3em; text-transform:uppercase; color:var(--sage); margin-bottom:1.2rem; }
+  .footer-col ul { list-style:none; }
+  .footer-col li { margin-bottom:.65rem; }
+  .footer-col button {
+    color:rgba(212,196,168,.5); font-size:.85rem; transition:color .3s;
+    background:none; border:none; cursor:pointer; font-family:'Jost',sans-serif;
+    font-weight:300; padding:0;
+  }
+  .footer-col button:hover { color:var(--sand); }
+  .footer-bottom {
+    padding-top:2rem; display:flex; justify-content:space-between;
+    font-size:.75rem; color:rgba(212,196,168,.28); flex-wrap:wrap; gap:1rem;
   }
 
-  /* MFA digits */
-  .mfa-digits{display:flex;gap:.6rem;margin-bottom:.8rem;justify-content:center;}
-  .mfa-digit{
-    width:44px;height:52px;background:rgba(255,255,255,.04);border:1px solid rgba(212,196,168,.18);
-    color:#d4c4a8;font-family:'Jost',sans-serif;font-size:1.3rem;text-align:center;
-    outline:none;transition:border-color .3s;
+  /* ── TOAST ── */
+  .toast {
+    position:fixed; bottom:2rem; right:2rem;
+    background:var(--soil); color:var(--linen);
+    padding:.9rem 1.8rem; font-size:.78rem; letter-spacing:.15em;
+    text-transform:uppercase; z-index:9999;
+    transform:translateY(80px); opacity:0;
+    transition:all .5s cubic-bezier(.34,1.2,.64,1); pointer-events:none;
   }
-  .mfa-digit:focus{border-color:rgba(106,124,82,.7);}
+  .toast.show { transform:translateY(0); opacity:1; }
 
-  .mfa-timer{font-size:.7rem;color:rgba(160,150,130,.45);letter-spacing:.12em;text-align:center;margin-top:.5rem;}
-  .mfa-resend{font-size:.72rem;color:rgba(106,124,82,.6);cursor:pointer;letter-spacing:.1em;text-align:center;margin-top:.4rem;background:none;border:none;font-family:'Jost',sans-serif;transition:color .3s;}
-  .mfa-resend:hover{color:rgba(106,124,82,1);}
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 
-  /* IP notice */
-  .ip-badge{
-    font-size:.68rem;letter-spacing:.15em;color:rgba(160,150,130,.35);text-align:center;
-    margin-top:1.4rem;padding:.4rem .8rem;border:1px solid rgba(212,196,168,.08);
+  /* ── RESPONSIVE ── */
+  @media (max-width:960px) {
+    nav { padding:1.2rem 1.5rem; }
+    .nav-links { display:none; }
+    .hero { grid-template-columns:1fr; }
+    .hero-right { display:none; }
+    .hero-left { padding:8rem 1.5rem 4rem; }
+    .categories { padding:4rem 1.5rem; }
+    .categories-inner { grid-template-columns:1fr 1fr; }
+    .shop-section { padding:3.5rem 1.5rem; }
+    .story { grid-template-columns:1fr; padding:4rem 1.5rem; }
+    .story-visual { display:none; }
+    .pillars { padding:4rem 1.5rem; }
+    .pillars-grid { grid-template-columns:1fr; gap:2rem; }
+    .about-hero { padding:7rem 1.5rem 4rem; }
+    .about-body { padding:4rem 1.5rem; }
+    .about-values { grid-template-columns:1fr; }
+    .contact-hero { padding:7rem 1.5rem 4rem; }
+    .contact-body { padding:4rem 1.5rem; }
+    .contact-grid { grid-template-columns:1fr; }
+    .footer-top { grid-template-columns:1fr 1fr; gap:2rem; }
+    .divider { padding:2rem 1.5rem; }
+    .cat-page-hero { padding:7rem 1.5rem 3rem; }
   }
-
-  /* Session info bar in panel */
-  .session-bar{
-    display:flex;align-items:center;justify-content:space-between;
-    background:rgba(74,92,58,.15);border:1px solid rgba(74,92,58,.25);
-    padding:.6rem 1rem;font-size:.7rem;letter-spacing:.1em;color:rgba(212,196,168,.6);
-    margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem;
-  }
-  .session-bar span{color:rgba(106,124,82,.9);}
-  .session-end-btn{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,122,112,.7);background:none;border:1px solid rgba(196,122,112,.3);padding:.25rem .6rem;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s;}
-  .session-end-btn:hover{background:rgba(139,58,42,.3);color:#c47a70;}
-
-
-  #vault-panel{
-    width:100%;max-width:860px;padding:2rem 1.5rem;
-    max-height:100vh;overflow-y:auto;
-  }
-  #vault-panel h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#d4c4a8;margin-bottom:.3rem;}
-  #vault-panel .vault-sub{text-align:left;margin-bottom:1.5rem;}
-
-  .role-badge{display:inline-block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid;margin-left:.6rem;vertical-align:middle;}
-  .role-owner{color:rgba(212,196,168,.8);border-color:rgba(212,196,168,.3);}
-
-  /* Tabs */
-  .vault-tabs{display:flex;gap:0;margin-bottom:2rem;border-bottom:1px solid rgba(212,196,168,.12);}
-  .vault-tab{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(160,150,130,.5);padding:.7rem 1.4rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:'Jost',sans-serif;}
-  .vault-tab.active{color:#d4c4a8;border-bottom-color:rgba(74,92,58,.8);}
-  .vault-tab:hover{color:rgba(212,196,168,.8);}
-  .vault-tab-content{display:none;} .vault-tab-content.active{display:block;}
-
-  /* Product list */
-  .ap-product-list{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.8rem;}
-  .ap-product-item{display:flex;align-items:center;gap:.9rem;background:rgba(255,255,255,.03);border:1px solid rgba(212,196,168,.1);padding:.7rem .9rem;}
-  .ap-thumb{width:46px;height:56px;object-fit:cover;flex-shrink:0;}
-  .ap-thumb-ph{width:46px;height:56px;background:rgba(200,213,192,.1);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
-  .ap-details{flex:1;min-width:0;}
-  .ap-details strong{font-size:.85rem;color:#d4c4a8;font-weight:400;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .ap-details span{font-size:.72rem;color:rgba(160,150,130,.6);}
-  .ap-actions{display:flex;gap:.4rem;flex-shrink:0;flex-wrap:wrap;}
-  .ap-btn{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;border:1px solid;cursor:pointer;font-family:'Jost',sans-serif;background:none;transition:all .2s;}
-  .ap-btn.mark-new{color:rgba(106,124,82,.8);border-color:rgba(106,124,82,.4);}
-  .ap-btn.mark-new:hover{background:rgba(74,92,58,.5);color:#d4c4a8;}
-  .ap-btn.mark-sale{color:rgba(196,162,80,.8);border-color:rgba(196,162,80,.35);}
-  .ap-btn.mark-sale:hover{background:rgba(122,96,48,.5);color:#d4c4a8;}
-  .ap-btn.edit-p{color:rgba(160,150,130,.7);border-color:rgba(160,150,130,.3);}
-  .ap-btn.edit-p:hover{background:rgba(100,90,70,.4);color:#d4c4a8;}
-  .ap-btn.del-p{color:rgba(196,122,112,.7);border-color:rgba(139,58,42,.4);}
-  .ap-btn.del-p:hover{background:rgba(139,58,42,.4);color:#d4c4a8;}
-
-  /* Add/edit form */
-  .ap-form-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#d4c4a8;margin-bottom:1.2rem;padding-top:1.5rem;border-top:1px solid rgba(212,196,168,.1);}
-  .ap-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
-  .ap-form-group{display:flex;flex-direction:column;gap:.35rem;}
-  .ap-form-group.full{grid-column:1/-1;}
-  .ap-form-group label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(122,140,106,.8);}
-  .ap-form-group input,.ap-form-group select{background:rgba(255,255,255,.04);border:1px solid rgba(212,196,168,.15);padding:.7rem .9rem;font-family:'Jost',sans-serif;font-size:.85rem;color:#d4c4a8;outline:none;transition:border-color .3s;}
-  .ap-form-group input:focus,.ap-form-group select:focus{border-color:rgba(74,92,58,.7);}
-  .ap-form-group select option{background:#1a1f14;color:#d4c4a8;}
-  .ap-form-actions{display:flex;gap:.7rem;margin-top:1rem;flex-wrap:wrap;}
-  .ap-save{padding:.7rem 2rem;background:rgba(74,92,58,.8);color:#d4c4a8;border:none;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s;}
-  .ap-save:hover{background:rgba(74,92,58,1);}
-  .ap-cancel{padding:.7rem 1.4rem;background:none;color:rgba(160,150,130,.6);border:1px solid rgba(160,150,130,.25);font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
-  .ap-cancel:hover{border-color:rgba(160,150,130,.5);color:rgba(160,150,130,.9);}
-
-  /* Security tab */
-  .sec-row{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(212,196,168,.07);}
-  .sec-icon{font-size:1.2rem;flex-shrink:0;margin-top:.1rem;}
-  .sec-info{flex:1;}
-  .sec-info strong{font-size:.82rem;color:#d4c4a8;font-weight:400;display:block;margin-bottom:.2rem;}
-  .sec-info p{font-size:.74rem;color:rgba(160,150,130,.6);line-height:1.6;}
-  .sec-status{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.22rem .6rem;border-radius:0;}
-  .sec-on{color:rgba(106,124,82,.9);border:1px solid rgba(74,92,58,.4);}
-  .sec-warn{color:rgba(196,162,80,.9);border:1px solid rgba(122,96,48,.4);}
-
-  /* Users tab */
-  .user-row{display:flex;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(212,196,168,.07);}
-  .user-avatar{width:36px;height:36px;border-radius:50%;background:rgba(74,92,58,.4);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
-  .user-info{flex:1;}
-  .user-info strong{font-size:.82rem;color:#d4c4a8;font-weight:400;display:block;}
-  .user-info span{font-size:.72rem;color:rgba(160,150,130,.5);}
-  .user-role{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(106,124,82,.8);border:1px solid rgba(74,92,58,.4);padding:.2rem .55rem;}
-
-  /* Close vault */
-  .vault-close-wrap{position:absolute;top:1.5rem;right:2rem;}
-  .vault-close{background:none;border:none;color:rgba(160,150,130,.4);font-size:1rem;cursor:pointer;letter-spacing:.2em;font-family:'Jost',sans-serif;font-size:.7rem;text-transform:uppercase;transition:color .2s;}
-  .vault-close:hover{color:rgba(160,150,130,.8);}
-
-  /* TOAST */
-  .toast{position:fixed;bottom:2rem;right:2rem;background:var(--soil);color:var(--linen);padding:.9rem 1.8rem;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;z-index:9999;transform:translateY(80px);opacity:0;transition:all .5s cubic-bezier(.34,1.2,.64,1);pointer-events:none;}
-  .toast.show{transform:translateY(0);opacity:1;}
-
-  @keyframes fadeIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-
-  @media(max-width:900px){
-    .hero{grid-template-columns:1fr;} .hero-right{display:none;}
-    .hero-left{padding:8rem 1.5rem 4rem;}
-    nav{padding:1.2rem 1.5rem;}
-    section{padding:4rem 1.5rem;}
-    .categories-inner{grid-template-columns:1fr 1fr;}
-    .story{grid-template-columns:1fr;padding:4rem 1.5rem;} .story-visual{display:none;}
-    .pillars-grid,.about-values{grid-template-columns:1fr;gap:2rem;}
-    .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
-    .contact-body{grid-template-columns:1fr;gap:3rem;padding:3rem 1.5rem;}
-    .about-body,.about-hero,.contact-hero{padding-left:1.5rem;padding-right:1.5rem;}
-    .ap-form-grid{grid-template-columns:1fr;}
-    #vault-panel{padding:1.5rem 1rem;}
+  @media (max-width:500px) {
+    .footer-top { grid-template-columns:1fr; }
+    .hero-actions { flex-direction:column; align-items:flex-start; }
   }
 </style>
 </head>
@@ -329,117 +373,368 @@
 
 <!-- ══ NAV ══ -->
 <nav>
-  <a href="#" class="nav-logo" onclick="showPage('home');return false;">Santiago's Way Journey</a>
-  <ul class="nav-links" id="main-nav">
-    <li><a href="#" onclick="showPage('home');scrollTo('categories');return false;">Shop</a></li>
-    <li><a href="#" onclick="showPage('home');scrollTo('featured');return false;">New In</a></li>
-    <li><button class="nl" onclick="showPage('about')">About</button></li>
-    <li><button class="nl" onclick="showPage('contact')">Contact</button></li>
+  <span class="nav-logo" onclick="showPage('home')">Santiago's Way Journey</span>
+  <ul class="nav-links">
+    <li class="nav-dropdown-wrap">
+      <button class="nav-btn">Shop ▾</button>
+      <div class="nav-dropdown">
+        <button onclick="showPage('home'); scrollToId('categories')">All Categories</button>
+        <button onclick="showPage('cat-tops')">Tops &amp; Tees</button>
+        <button onclick="showPage('cat-bottoms')">Bottoms</button>
+        <button onclick="showPage('cat-outerwear')">Outerwear</button>
+        <button onclick="showPage('cat-accessories')">Accessories</button>
+      </div>
+    </li>
+    <li><button class="nav-btn" onclick="showPage('about')">About</button></li>
+    <li><button class="nav-btn" onclick="showPage('contact')">Contact</button></li>
   </ul>
 </nav>
 
-<!-- ════════════ HOME ════════════ -->
+<!-- ════════════════════════════════
+     HOME PAGE
+════════════════════════════════ -->
 <div id="page-home" class="page active">
+
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
       <p class="hero-eyebrow">Est. 2026 — Clothing for the journey</p>
       <h1>Wear the<br><em>path</em><br>you walk.</h1>
       <p class="hero-desc">Simple, honest clothing rooted in the natural world. Each piece made for the everyday journey — wherever yours may lead.</p>
       <div class="hero-actions">
-        <button class="btn-main" onclick="scrollTo('featured')">Shop Collection</button>
+        <button class="btn-main" onclick="scrollToId('categories')">Shop Collection</button>
         <button class="btn-ghost" onclick="showPage('about')">Our Story ↓</button>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right" aria-hidden="true">
       <svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dce8d4"/><stop offset="100%" stop-color="#c8d5c0"/></linearGradient>
-          <linearGradient id="hillG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6b7c52"/><stop offset="100%" stop-color="#4a5c3a"/></linearGradient>
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#dce8d4"/>
+            <stop offset="100%" stop-color="#c8d5c0"/>
+          </linearGradient>
+          <linearGradient id="hillG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6b7c52"/>
+            <stop offset="100%" stop-color="#4a5c3a"/>
+          </linearGradient>
         </defs>
         <rect width="600" height="800" fill="url(#skyG)"/>
-        <circle cx="430" cy="155" r="58" fill="#e8d8b0" opacity="0.45"/><circle cx="430" cy="155" r="40" fill="#e8d0a0" opacity="0.5"/>
-        <path d="M0,490 Q80,370 170,410 Q260,345 340,385 Q420,310 500,365 Q550,330 600,355 L600,800 L0,800Z" fill="#a89880" opacity="0.28"/>
-        <path d="M0,560 Q110,450 220,490 Q330,410 440,465 Q520,410 600,440 L600,800 L0,800Z" fill="#7a8c6a" opacity="0.55"/>
+        <circle cx="430" cy="155" r="58" fill="#e8d8b0" opacity=".45"/>
+        <circle cx="430" cy="155" r="40" fill="#e8d0a0" opacity=".5"/>
+        <path d="M0,490 Q80,370 170,410 Q260,345 340,385 Q420,310 500,365 Q550,330 600,355 L600,800 L0,800Z" fill="#a89880" opacity=".28"/>
+        <path d="M0,560 Q110,450 220,490 Q330,410 440,465 Q520,410 600,440 L600,800 L0,800Z" fill="#7a8c6a" opacity=".55"/>
         <path d="M0,640 Q150,535 310,572 Q460,508 600,548 L600,800 L0,800Z" fill="url(#hillG)"/>
-        <rect x="0" y="730" width="600" height="70" fill="#3b2a1a" opacity="0.45"/>
+        <rect x="0" y="730" width="600" height="70" fill="#3b2a1a" opacity=".45"/>
         <rect x="78" y="505" width="9" height="148" fill="#3b2a1a" rx="4"/>
-        <ellipse cx="82" cy="485" rx="36" ry="52" fill="#4a5c3a"/><ellipse cx="66" cy="516" rx="24" ry="36" fill="#5c6e4c"/><ellipse cx="98" cy="510" rx="20" ry="32" fill="#4a5c3a"/>
+        <ellipse cx="82" cy="485" rx="36" ry="52" fill="#4a5c3a"/>
+        <ellipse cx="66" cy="516" rx="24" ry="36" fill="#5c6e4c"/>
         <rect x="492" y="485" width="11" height="155" fill="#3b2a1a" rx="5"/>
-        <ellipse cx="497" cy="462" rx="42" ry="60" fill="#4a5c3a"/><ellipse cx="477" cy="495" rx="26" ry="38" fill="#5c6e4c"/><ellipse cx="517" cy="490" rx="24" ry="36" fill="#3d5030"/>
+        <ellipse cx="497" cy="462" rx="42" ry="60" fill="#4a5c3a"/>
+        <ellipse cx="477" cy="495" rx="26" ry="38" fill="#5c6e4c"/>
         <rect x="288" y="568" width="7" height="88" fill="#3b2a1a" rx="3"/>
         <ellipse cx="292" cy="553" rx="26" ry="38" fill="#5c6e4c"/>
-        <path d="M258,800 Q278,724 292,685 Q306,645 298,605" fill="none" stroke="#d4c4a8" stroke-width="16" opacity="0.3" stroke-linecap="round"/>
+        <path d="M258,800 Q278,724 292,685 Q306,645 298,605" fill="none" stroke="#d4c4a8" stroke-width="16" opacity=".28" stroke-linecap="round"/>
       </svg>
     </div>
   </section>
 
-  <div class="divider"><div class="divider-line"></div><span>Rooted in nature — made for the everyday</span><div class="divider-line"></div></div>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span>Rooted in nature — made for the everyday</span>
+    <div class="divider-line"></div>
+  </div>
 
+  <!-- CATEGORIES — scrolled to by "Shop Collection" -->
   <section class="categories" id="categories">
-    <p class="label">Explore</p><h2 class="heading">Shop by <em>path</em></h2>
+    <span class="label">Explore</span>
+    <h2 class="heading">Shop by <em>path</em></h2>
     <div class="categories-inner">
-      <a class="cat-item" href="#" onclick="scrollTo('featured');return false;"><div class="cat-glyph">🌿</div><h3>Tops & Tees</h3><p>Breathable, everyday comfort</p><span class="cat-arrow">Explore →</span></a>
-      <a class="cat-item" href="#" onclick="scrollTo('featured');return false;"><div class="cat-glyph">🍂</div><h3>Bottoms</h3><p>Joggers, jeans & trousers</p><span class="cat-arrow">Explore →</span></a>
-      <a class="cat-item" href="#" onclick="scrollTo('featured');return false;"><div class="cat-glyph">🌲</div><h3>Outerwear</h3><p>Jackets built for the trail</p><span class="cat-arrow">Explore →</span></a>
-      <a class="cat-item" href="#" onclick="scrollTo('featured');return false;"><div class="cat-glyph">🪨</div><h3>Accessories</h3><p>Finish the look, naturally</p><span class="cat-arrow">Explore →</span></a>
+      <button class="cat-card" onclick="showPage('cat-tops')">
+        <div class="cat-glyph">🌿</div>
+        <h3>Tops &amp; Tees</h3>
+        <p>Breathable, everyday comfort</p>
+        <span class="cat-arrow">Explore →</span>
+      </button>
+      <button class="cat-card" onclick="showPage('cat-bottoms')">
+        <div class="cat-glyph">🍂</div>
+        <h3>Bottoms</h3>
+        <p>Joggers, jeans &amp; trousers</p>
+        <span class="cat-arrow">Explore →</span>
+      </button>
+      <button class="cat-card" onclick="showPage('cat-outerwear')">
+        <div class="cat-glyph">🌲</div>
+        <h3>Outerwear</h3>
+        <p>Jackets built for the trail</p>
+        <span class="cat-arrow">Explore →</span>
+      </button>
+      <button class="cat-card" onclick="showPage('cat-accessories')">
+        <div class="cat-glyph">🪨</div>
+        <h3>Accessories</h3>
+        <p>Finish the look, naturally</p>
+        <span class="cat-arrow">Explore →</span>
+      </button>
     </div>
   </section>
 
-  <section class="featured" id="featured">
-    <p class="label">New In</p><h2 class="heading">The <em>current</em> collection</h2>
-    <div class="products-grid" id="products-grid"></div>
-  </section>
-
-  <div class="story" id="story">
+  <!-- STORY -->
+  <div class="story">
     <div class="story-text">
-      <p class="label">Our Way</p>
+      <span class="label">Our Way</span>
       <h2 class="heading">Clothing that<br>honors the <em>earth.</em></h2>
-      <p>Santiago's Way Journey was born from a simple belief — what you wear should feel as natural as where you walk.</p>
-      <a onclick="showPage('about')">Read Our Story →</a>
+      <p>Santiago's Way Journey was born from a simple belief — what you wear should feel as natural as where you walk. Honest, lasting pieces inspired by the natural world.</p>
+      <button class="story-link" onclick="showPage('about')">Read Our Story →</button>
     </div>
-    <div class="story-visual">
+    <div class="story-visual" aria-hidden="true">
       <svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
-        <path d="M150,350 Q146,280 150,220 Q154,160 148,105 Q143,72 150,38" fill="none" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-        <path d="M150,225 Q112,198 84,186" fill="none" stroke="#d4c4a8" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
-        <ellipse cx="73" cy="182" rx="26" ry="12" fill="#7a8c6a" opacity="0.45" transform="rotate(-22 73 182)"/>
-        <path d="M150,185 Q188,158 216,147" fill="none" stroke="#d4c4a8" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
-        <ellipse cx="226" cy="142" rx="28" ry="12" fill="#7a8c6a" opacity="0.45" transform="rotate(18 226 142)"/>
-        <ellipse cx="150" cy="36" rx="14" ry="24" fill="#6b7c52" opacity="0.45" transform="rotate(4 150 36)"/>
+        <path d="M150,350 Q146,280 150,220 Q154,160 148,105 Q143,72 150,38" fill="none" stroke="#d4c4a8" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+        <path d="M150,225 Q112,198 84,186" fill="none" stroke="#d4c4a8" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+        <ellipse cx="73" cy="182" rx="26" ry="12" fill="#7a8c6a" opacity=".45" transform="rotate(-22 73 182)"/>
+        <path d="M150,185 Q188,158 216,147" fill="none" stroke="#d4c4a8" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+        <ellipse cx="226" cy="142" rx="28" ry="12" fill="#7a8c6a" opacity=".45" transform="rotate(18 226 142)"/>
+        <ellipse cx="150" cy="36" rx="14" ry="24" fill="#6b7c52" opacity=".45" transform="rotate(4 150 36)"/>
+        <ellipse cx="137" cy="47" rx="10" ry="18" fill="#7a8c6a" opacity=".38" transform="rotate(-16 137 47)"/>
       </svg>
     </div>
   </div>
 
-  <section class="pillars" id="why">
-    <p class="label">Why Santiago's</p><h2 class="heading">Built on <em>simple</em> values</h2>
+  <!-- PILLARS -->
+  <section class="pillars">
+    <span class="label">Why Santiago's</span>
+    <h2 class="heading">Built on <em>simple</em> values</h2>
     <div class="pillars-grid">
-      <div class="pillar"><div class="pillar-num">01</div><h4>Natural & Honest</h4><p>No excess. No noise. Just clothing that fits your life, made with care and with nature in mind.</p></div>
-      <div class="pillar"><div class="pillar-num">02</div><h4>Ships in 24 Hours</h4><p>Every order is packed and on its way within a day. Free shipping on orders over $50.</p></div>
-      <div class="pillar"><div class="pillar-num">03</div><h4>30-Day Returns</h4><p>If it doesn't feel right, send it back. No fuss, no questions — always.</p></div>
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h4>Natural &amp; Honest</h4>
+        <p>No excess. No noise. Just clothing that fits your life, made with care and nature in mind.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h4>Ships in 24 Hours</h4>
+        <p>Every order packed and on its way within a day. Free shipping on orders over $50.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h4>30-Day Returns</h4>
+        <p>If it doesn't feel right, send it back. No fuss, no questions — always.</p>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="footer-top">
-      <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Simple clothing rooted in the natural world. Wear the path you walk.</p></div>
-      <div class="footer-col"><h5>Shop</h5><ul><li><button class="fp" onclick="scrollTo('categories')">Browse All</button></li><li><button class="fp" onclick="scrollTo('featured')">New In</button></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><button class="fp" onclick="showPage('about')">About Us</button></li><li><button class="fp" onclick="showPage('contact')">Contact</button></li><li><a href="#">Size Guide</a></li><li><a href="#">Returns</a></li></ul></div>
-      <div class="footer-col"><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Etsy</a></li><li><a href="#">Depop</a></li></ul></div>
+      <div class="footer-brand">
+        <div class="logo">Santiago's Way Journey</div>
+        <p>Simple clothing rooted in the natural world. Wear the path you walk.</p>
+      </div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><button onclick="showPage('cat-tops')">Tops &amp; Tees</button></li>
+        <li><button onclick="showPage('cat-bottoms')">Bottoms</button></li>
+        <li><button onclick="showPage('cat-outerwear')">Outerwear</button></li>
+        <li><button onclick="showPage('cat-accessories')">Accessories</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><button onclick="showPage('about')">About Us</button></li>
+        <li><button onclick="showPage('contact')">Contact</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul>
+        <li><button onclick="showToast('Coming soon!')">Instagram</button></li>
+        <li><button onclick="showToast('Coming soon!')">TikTok</button></li>
+        <li><button onclick="showToast('Coming soon!')">Etsy</button></li>
+        <li><button onclick="showToast('Coming soon!')">Depop</button></li>
+      </ul></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Santiago's Way Journey. All rights reserved.</p><p>Rooted in nature — made for the everyday.</p></div>
+    <div class="footer-bottom">
+      <p>© 2026 Santiago's Way Journey. All rights reserved.</p>
+      <p>Rooted in nature — made for the everyday.</p>
+    </div>
   </footer>
 </div>
 
-<!-- ════════════ ABOUT ════════════ -->
+<!-- ════════════════════════════════
+     CATEGORY: TOPS & TEES
+════════════════════════════════ -->
+<div id="page-cat-tops" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-bg" style="background:linear-gradient(160deg,#2e4424,#4a5c3a);" aria-hidden="true"></div>
+    <div class="cat-page-hero-inner">
+      <button class="breadcrumb" onclick="showPage('home'); scrollToId('categories')">← Back <span>/ Shop by Path</span></button>
+      <span class="label">The Collection</span>
+      <h1 class="heading">Tops <em>&</em> Tees</h1>
+      <p>Breathable, honest tops built for the everyday journey. Comfortable from morning to night.</p>
+    </div>
+  </div>
+  <div class="shop-section">
+    <span class="label">All Items</span>
+    <h2 class="heading" style="font-size:2rem;">Tops &amp; Tees</h2>
+    <div class="products-grid" id="grid-tops"></div>
+  </div>
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Simple clothing rooted in the natural world.</p></div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><button onclick="showPage('cat-tops')">Tops &amp; Tees</button></li>
+        <li><button onclick="showPage('cat-bottoms')">Bottoms</button></li>
+        <li><button onclick="showPage('cat-outerwear')">Outerwear</button></li>
+        <li><button onclick="showPage('cat-accessories')">Accessories</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><button onclick="showPage('about')">About</button></li>
+        <li><button onclick="showPage('contact')">Contact</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul>
+        <li><button onclick="showToast('Coming soon!')">Instagram</button></li>
+        <li><button onclick="showToast('Coming soon!')">TikTok</button></li>
+        <li><button onclick="showToast('Coming soon!')">Etsy</button></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Santiago's Way Journey.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     CATEGORY: BOTTOMS
+════════════════════════════════ -->
+<div id="page-cat-bottoms" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-bg" style="background:linear-gradient(160deg,#3a2418,#5c3d2e);" aria-hidden="true"></div>
+    <div class="cat-page-hero-inner">
+      <button class="breadcrumb" onclick="showPage('home'); scrollToId('categories')">← Back <span>/ Shop by Path</span></button>
+      <span class="label">The Collection</span>
+      <h1 class="heading"><em>Bottoms</em></h1>
+      <p>Joggers, trousers, and jeans that move with you through every path you take.</p>
+    </div>
+  </div>
+  <div class="shop-section">
+    <span class="label">All Items</span>
+    <h2 class="heading" style="font-size:2rem;">Bottoms</h2>
+    <div class="products-grid" id="grid-bottoms"></div>
+  </div>
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Simple clothing rooted in the natural world.</p></div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><button onclick="showPage('cat-tops')">Tops &amp; Tees</button></li>
+        <li><button onclick="showPage('cat-bottoms')">Bottoms</button></li>
+        <li><button onclick="showPage('cat-outerwear')">Outerwear</button></li>
+        <li><button onclick="showPage('cat-accessories')">Accessories</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><button onclick="showPage('about')">About</button></li>
+        <li><button onclick="showPage('contact')">Contact</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul>
+        <li><button onclick="showToast('Coming soon!')">Instagram</button></li>
+        <li><button onclick="showToast('Coming soon!')">TikTok</button></li>
+        <li><button onclick="showToast('Coming soon!')">Etsy</button></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Santiago's Way Journey.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     CATEGORY: OUTERWEAR
+════════════════════════════════ -->
+<div id="page-cat-outerwear" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-bg" style="background:linear-gradient(160deg,#1e3020,#2a4028);" aria-hidden="true"></div>
+    <div class="cat-page-hero-inner">
+      <button class="breadcrumb" onclick="showPage('home'); scrollToId('categories')">← Back <span>/ Shop by Path</span></button>
+      <span class="label">The Collection</span>
+      <h1 class="heading">Outer<em>wear</em></h1>
+      <p>Jackets and hoodies built for every season. Layered for the trail, styled for the city.</p>
+    </div>
+  </div>
+  <div class="shop-section">
+    <span class="label">All Items</span>
+    <h2 class="heading" style="font-size:2rem;">Outerwear</h2>
+    <div class="products-grid" id="grid-outerwear"></div>
+  </div>
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Simple clothing rooted in the natural world.</p></div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><button onclick="showPage('cat-tops')">Tops &amp; Tees</button></li>
+        <li><button onclick="showPage('cat-bottoms')">Bottoms</button></li>
+        <li><button onclick="showPage('cat-outerwear')">Outerwear</button></li>
+        <li><button onclick="showPage('cat-accessories')">Accessories</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><button onclick="showPage('about')">About</button></li>
+        <li><button onclick="showPage('contact')">Contact</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul>
+        <li><button onclick="showToast('Coming soon!')">Instagram</button></li>
+        <li><button onclick="showToast('Coming soon!')">TikTok</button></li>
+        <li><button onclick="showToast('Coming soon!')">Etsy</button></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Santiago's Way Journey.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     CATEGORY: ACCESSORIES
+════════════════════════════════ -->
+<div id="page-cat-accessories" class="page">
+  <div class="cat-page-hero">
+    <div class="cat-page-hero-bg" style="background:linear-gradient(160deg,#4a3820,#6b5030);" aria-hidden="true"></div>
+    <div class="cat-page-hero-inner">
+      <button class="breadcrumb" onclick="showPage('home'); scrollToId('categories')">← Back <span>/ Shop by Path</span></button>
+      <span class="label">The Collection</span>
+      <h1 class="heading">Acces<em>sories</em></h1>
+      <p>Caps, bags, and finishing touches rooted in natural materials and earthy style.</p>
+    </div>
+  </div>
+  <div class="shop-section">
+    <span class="label">All Items</span>
+    <h2 class="heading" style="font-size:2rem;">Accessories</h2>
+    <div class="products-grid" id="grid-accessories"></div>
+  </div>
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Simple clothing rooted in the natural world.</p></div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><button onclick="showPage('cat-tops')">Tops &amp; Tees</button></li>
+        <li><button onclick="showPage('cat-bottoms')">Bottoms</button></li>
+        <li><button onclick="showPage('cat-outerwear')">Outerwear</button></li>
+        <li><button onclick="showPage('cat-accessories')">Accessories</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><button onclick="showPage('about')">About</button></li>
+        <li><button onclick="showPage('contact')">Contact</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul>
+        <li><button onclick="showToast('Coming soon!')">Instagram</button></li>
+        <li><button onclick="showToast('Coming soon!')">TikTok</button></li>
+        <li><button onclick="showToast('Coming soon!')">Etsy</button></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Santiago's Way Journey.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     ABOUT
+════════════════════════════════ -->
 <div id="page-about" class="page">
   <div class="about-hero">
-    <svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs><linearGradient id="aG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7a8c6a"/><stop offset="100%" stop-color="#3d5030"/></linearGradient></defs>
+    <svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="aG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7a8c6a"/>
+          <stop offset="100%" stop-color="#3d5030"/>
+        </linearGradient>
+      </defs>
       <rect width="1200" height="500" fill="url(#aG)"/>
-      <ellipse cx="200" cy="420" rx="180" ry="120" fill="#4a5c3a" opacity="0.5"/>
-      <ellipse cx="1050" cy="400" rx="200" ry="140" fill="#3d5030" opacity="0.5"/>
-      <circle cx="900" cy="80" r="60" fill="#e8d8b0" opacity="0.2"/>
+      <ellipse cx="200" cy="420" rx="180" ry="120" fill="#4a5c3a" opacity=".5"/>
+      <ellipse cx="1050" cy="400" rx="200" ry="140" fill="#3d5030" opacity=".5"/>
+      <circle cx="900" cy="80" r="60" fill="#e8d8b0" opacity=".18"/>
     </svg>
-    <div class="about-hero-text"><p class="label">Who We Are</p><h1 class="heading">The <em>way</em><br>of Santiago.</h1></div>
+    <div class="about-hero-text">
+      <span class="label">Who We Are</span>
+      <h1 class="heading">The <em>way</em><br>of Santiago.</h1>
+    </div>
   </div>
   <div class="about-body">
     <p><strong>Santiago's Way Journey</strong> began with a single, simple idea: that clothing should feel like a second skin — honest, comfortable, and rooted in the world around us.</p>
@@ -447,584 +742,265 @@
     <p>Every piece in our collection is chosen with intention. Earthy tones drawn from soil, bark, moss, and stone. Silhouettes that move with you, not against you. Clothing built for the long walk.</p>
     <p><strong>This is Santiago's Way.</strong> We hope it becomes yours too.</p>
     <div class="about-values">
-      <div class="about-value"><p class="label">Our Promise</p><h3>Nature First</h3><p>Every design decision starts by asking: does this feel natural? We reject noise and trend-chasing in favour of honest, lasting style.</p></div>
-      <div class="about-value"><p class="label">Our Practice</p><h3>Made to Last</h3><p>We choose quality over quantity, always. Pieces that age well, wear well, and earn a permanent place in your wardrobe.</p></div>
-      <div class="about-value"><p class="label">Our People</p><h3>For Every Journey</h3><p>Santiago's is for anyone moving through the world on their own terms. No gatekeeping. No exclusivity. Just good clothing for real life.</p></div>
-      <div class="about-value"><p class="label">Our Future</p><h3>Growing Responsibly</h3><p>We're committed to reducing our environmental footprint — more sustainable materials, less waste, more care.</p></div>
-    </div>
-  </div>
-  <footer>
-    <div class="footer-top">
-      <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Simple clothing rooted in the natural world.</p></div>
-      <div class="footer-col"><h5>Shop</h5><ul><li><button class="fp" onclick="showPage('home');scrollTo('categories')">Browse All</button></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><button class="fp" onclick="showPage('about')">About</button></li><li><button class="fp" onclick="showPage('contact')">Contact</button></li></ul></div>
-      <div class="footer-col"><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Etsy</a></li><li><a href="#">Depop</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><p>© 2026 Santiago's Way Journey.</p></div>
-  </footer>
-</div>
-
-<!-- ════════════ CONTACT ════════════ -->
-<div id="page-contact" class="page">
-  <div class="contact-hero"><div class="contact-hero-text"><p class="label">Get In Touch</p><h1 class="heading">Let's <em>talk.</em></h1></div></div>
-  <div class="contact-body">
-    <div class="contact-info">
-      <h3>We'd love to hear from you.</h3>
-      <p>Whether you have a question about sizing, an order, or just want to say hello — we get back to you within 24 hours.</p>
-      <div class="contact-detail">
-        <div class="contact-item"><span>Email</span><p>santiagoswayjourney@gmail.com</p></div>
-        <div class="contact-item"><span>Response Time</span><p>Within 24 hours</p></div>
-        <div class="contact-item"><span>Social</span><p>@santiagoswayjourney</p></div>
-        <div class="contact-item"><span>Also On</span><p>Etsy · Depop</p></div>
-      </div>
-    </div>
-    <div class="contact-form">
-      <div class="form-group"><label>Your Name</label><input type="text" placeholder="Santiago"></div>
-      <div class="form-group"><label>Email</label><input type="email" placeholder="hello@example.com"></div>
-      <div class="form-group"><label>Subject</label><input type="text" placeholder="Order, sizing, general…"></div>
-      <div class="form-group"><label>Message</label><textarea rows="6" placeholder="Tell us what's on your mind…"></textarea></div>
-      <button class="form-submit" onclick="showToast('Message sent — we\'ll be in touch soon.')">Send Message →</button>
+      <div class="about-value"><span class="label">Our Promise</span><h3>Nature First</h3><p>Every design decision starts by asking: does this feel natural? We reject noise and trend-chasing in favour of honest, lasting style.</p></div>
+      <div class="about-value"><span class="label">Our Practice</span><h3>Made to Last</h3><p>We choose quality over quantity, always. Pieces that age well, wear well, and earn a permanent place in your wardrobe.</p></div>
+      <div class="about-value"><span class="label">Our People</span><h3>For Every Journey</h3><p>Santiago's is for anyone moving through the world on their own terms. No gatekeeping. Just good clothing for real life.</p></div>
+      <div class="about-value"><span class="label">Our Future</span><h3>Growing Responsibly</h3><p>Committed to reducing our environmental footprint — more sustainable materials, less waste, more care.</p></div>
     </div>
   </div>
   <footer>
     <div class="footer-top">
       <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Rooted in nature — made for the everyday.</p></div>
-      <div class="footer-col"><h5>Shop</h5><ul><li><button class="fp" onclick="showPage('home');scrollTo('categories')">Browse All</button></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><button class="fp" onclick="showPage('about')">About</button></li><li><button class="fp" onclick="showPage('contact')">Contact</button></li></ul></div>
-      <div class="footer-col"><h5>Follow</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="#">Etsy</a></li><li><a href="#">Depop</a></li></ul></div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><button onclick="showPage('cat-tops')">Tops &amp; Tees</button></li>
+        <li><button onclick="showPage('cat-bottoms')">Bottoms</button></li>
+        <li><button onclick="showPage('cat-outerwear')">Outerwear</button></li>
+        <li><button onclick="showPage('cat-accessories')">Accessories</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><button onclick="showPage('about')">About</button></li>
+        <li><button onclick="showPage('contact')">Contact</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul>
+        <li><button onclick="showToast('Coming soon!')">Instagram</button></li>
+        <li><button onclick="showToast('Coming soon!')">TikTok</button></li>
+        <li><button onclick="showToast('Coming soon!')">Etsy</button></li>
+      </ul></div>
     </div>
     <div class="footer-bottom"><p>© 2026 Santiago's Way Journey.</p></div>
   </footer>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-  
-════════════════════════════════════════════════════ -->
-<div id="vault-overlay">
-  <div class="vault-close-wrap">
-    <button class="vault-close" onclick="closeVault()">✕ Close</button>
-  </div>
-
-  <!-- STEP 1: Master Password -->
-  <div class="vault-step active" id="step-password">
-    <div class="vault-logo">Santiago's Way Journey</div>
-    <div class="lockout-bar" id="lockout-bar"></div>
-    <div class="vault-title">Secure Access</div>
-    <div class="vault-sub">Enter your master password to continue</div>
-    <input class="vault-input" type="password" id="inp-pass" placeholder="Master password (16+ chars)" autocomplete="off" onkeydown="if(event.key==='Enter')submitPassword()">
-    <div class="vault-err" id="pass-err"></div>
-    <button class="vault-btn" id="pass-btn" onclick="submitPassword()">Continue →</button>
-    <div class="ip-badge" id="ip-display">Session IP: checking…</div>
-  </div>
-
-  <!-- STEP 2: TOTP MFA -->
-  <div class="vault-step" id="step-mfa">
-    <div class="vault-logo">Santiago's Way Journey</div>
-    <div class="vault-title">Two-Factor Auth</div>
-    <div class="vault-sub">Enter the 6-digit code from your authenticator app</div>
-    <div class="mfa-digits" id="mfa-digits">
-      <input class="mfa-digit" maxlength="1" type="tel" oninput="mfaNav(this,0)">
-      <input class="mfa-digit" maxlength="1" type="tel" oninput="mfaNav(this,1)">
-      <input class="mfa-digit" maxlength="1" type="tel" oninput="mfaNav(this,2)">
-      <input class="mfa-digit" maxlength="1" type="tel" oninput="mfaNav(this,3)">
-      <input class="mfa-digit" maxlength="1" type="tel" oninput="mfaNav(this,4)">
-      <input class="mfa-digit" maxlength="1" type="tel" oninput="mfaNav(this,5)">
-    </div>
-    <div class="vault-err" id="mfa-err"></div>
-    <div class="mfa-timer" id="mfa-timer">Code refreshes in <span id="mfa-countdown">30</span>s</div>
-    <button class="mfa-resend" onclick="regenerateMFA()">Generate new demo code ↺</button>
-    <div class="ip-badge" style="margin-top:1.2rem;" id="mfa-ip"></div>
-  </div>
-
-  <!-- STEP 3:  Panel -->
-  <div class="vault-step" id="step-panel">
-    <div id="vault-panel">
-      <p class="label" style="color:rgba(122,140,106,.7);">Vault — Owner Access</p>
-      <h2>Store Dashboard <span class="role-badge role-owner">Owner</span></h2>
-      <p class="vault-sub" style="text-align:left;margin-bottom:1rem;">santiagoswayjourney@gmail.com</p>
-
-      <div class="session-bar">
-        <div>Session started: <span id="session-start"></span> &nbsp;|&nbsp; IP: <span id="session-ip"></span></div>
-        <button class="session-end-btn" onclick="endSession()">End Session</button>
-      </div>
-
-      <!-- Tabs -->
-      <div class="vault-tabs">
-        <button class="vault-tab active" onclick="switchTab('products',this)">Products</button>
-        <button class="vault-tab" onclick="switchTab('security',this)">Security</button>
-        <button class="vault-tab" onclick="switchTab('users',this)">Users</button>
-      </div>
-
-      <!-- PRODUCTS TAB -->
-      <div class="vault-tab-content active" id="tab-products">
-        <div class="ap-product-list" id="ap-product-list"></div>
-        <div>
-          <div class="ap-form-title" id="ap-form-title">Add New Product</div>
-          <input type="hidden" id="edit-id">
-          <div class="ap-form-grid">
-            <div class="ap-form-group"><label>Product Name</label><input type="text" id="p-name" placeholder="e.g. Trail Tee — Moss" style="width:100%;"></div>
-            <div class="ap-form-group"><label>Price ($)</label><input type="number" id="p-price" placeholder="29" style="width:100%;"></div>
-            <div class="ap-form-group"><label>Original Price ($) optional</label><input type="number" id="p-oldprice" placeholder="45" style="width:100%;"></div>
-            <div class="ap-form-group"><label>Category</label>
-              <select id="p-cat" style="width:100%;">
-                <option>Tops & Tees</option><option>Bottoms</option><option>Outerwear</option><option>Accessories</option>
-              </select>
-            </div>
-            <div class="ap-form-group"><label>Badge</label>
-              <select id="p-badge" style="width:100%;">
-                <option value="">None</option><option value="new">New</option><option value="sale">Sale</option>
-              </select>
-            </div>
-            <div class="ap-form-group"><label>Photo Upload</label><input type="file" id="p-photo" accept="image/*" style="width:100%;color:rgba(212,196,168,.6);"></div>
-          </div>
-          <div class="ap-form-actions">
-            <button class="ap-save" onclick="saveProduct()">Save Product</button>
-            <button class="ap-cancel" id="ap-cancel" style="display:none;" onclick="cancelEdit()">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- SECURITY TAB -->
-      <div class="vault-tab-content" id="tab-security">
-        <div class="sec-row"><span class="sec-icon">🔑</span><div class="sec-info"><strong>Secret Entry Route</strong><p>Admin accessible only via hidden keyboard sequence (S→W→J→Enter). No URL, no button visible on site.</p></div><span class="sec-status sec-on">Active</span></div>
-        <div class="sec-row"><span class="sec-icon">🛡️</span><div class="sec-info"><strong>Multi-Factor Authentication (TOTP)</strong><p>6-digit time-based one-time password required on every login. Compatible with Google Authenticator, Authy, and any TOTP app.</p></div><span class="sec-status sec-on">Enabled</span></div>
-        <div class="sec-row"><span class="sec-icon">🔒</span><div class="sec-info"><strong>Master Password — 16+ Characters</strong><p>Password enforced to be 16+ characters with letters, numbers, and symbols. Currently set to your configured master password.</p></div><span class="sec-status sec-on">Enforced</span></div>
-        <div class="sec-row"><span class="sec-icon">🚫</span><div class="sec-info"><strong>Login Attempt Limiting</strong><p>Account locks for 15 minutes after 3 failed password attempts. Resets after lockout period expires.</p></div><span class="sec-status sec-on">Active — 3 attempts</span></div>
-        <div class="sec-row"><span class="sec-icon">🌐</span><div class="sec-info"><strong>IP Logging</strong><p>Every login session logs the access IP address and timestamp for your review.</p></div><span class="sec-status sec-on">Logging</span></div>
-        <div class="sec-row"><span class="sec-icon">👤</span><div class="sec-info"><strong>Role-Based Access</strong><p>Only the Owner role has full access. Additional staff roles (e.g. Order Manager) can be added with restricted permissions.</p></div><span class="sec-status sec-on">Configured</span></div>
-        <div class="sec-row"><span class="sec-icon">⏱️</span><div class="sec-info"><strong>Auto Session Expiry</strong><p>Sessions automatically expire after 30 minutes of inactivity. Re-authentication required.</p></div><span class="sec-status sec-on">30 min</span></div>
-        <div class="sec-row"><span class="sec-icon">📋</span><div class="sec-info"><strong>Regular User Audits</strong><p>Review all admin users below under the Users tab. Remove inactive accounts promptly.</p></div><span class="sec-status sec-warn">Review monthly</span></div>
-        <br>
-        <div style="padding:1rem;background:rgba(139,58,42,.08);border:1px solid rgba(139,58,42,.2);font-size:.74rem;color:rgba(196,160,140,.7);line-height:1.7;">
-          <strong style="color:rgba(212,196,168,.6);display:block;margin-bottom:.4rem;">⚠ Next Steps for Full Protection</strong>
-          To activate Google Authenticator: scan the QR code in your authenticator app using the TOTP secret. For IP whitelisting and VPN enforcement, these must be configured at your hosting/server level (e.g. Vercel, Netlify, Cloudflare Access).
-        </div>
-      </div>
-
-      <!-- USERS TAB -->
-      <div class="vault-tab-content" id="tab-users">
-        <div id="users-list"></div>
-        <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(212,196,168,.08);font-size:.72rem;color:rgba(160,150,130,.5);line-height:1.7;">
-          <strong style="color:rgba(212,196,168,.5);display:block;margin-bottom:.3rem;">Role-Based Access Policy</strong>
-          Owner — full access to all features.<br>
-          Order Manager — view orders only, no product editing.<br>
-          Content Editor — add/edit products, no security or user access.<br><br>
-          Review this list monthly and remove any accounts no longer active.
-        </div>
-      </div>
-
+<!-- ════════════════════════════════
+     CONTACT — info only, no form
+════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="contact-hero">
+    <svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="cG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5c6e4c"/>
+          <stop offset="100%" stop-color="#3b2a1a"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="500" fill="url(#cG)"/>
+      <ellipse cx="150" cy="440" rx="220" ry="100" fill="#4a5c3a" opacity=".35"/>
+      <ellipse cx="1100" cy="380" rx="260" ry="120" fill="#2a1a0a" opacity=".35"/>
+      <path d="M0,380 Q300,300 600,340 Q900,280 1200,320 L1200,500 L0,500Z" fill="#3b2a1a" opacity=".25"/>
+    </svg>
+    <div class="contact-hero-text">
+      <span class="label">Get In Touch</span>
+      <h1 class="heading">Let's <em>connect.</em></h1>
     </div>
   </div>
+
+  <div class="contact-body">
+    <h3>We're here for you.</h3>
+    <p>Have a question about an order, sizing, or just want to say hello? Reach out through any of the channels below — we get back to every message within 24 hours.</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="ci-label">Email</span>
+        <p><a href="mailto:santiagoswayjourney@gmail.com">santiagoswayjourney@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Response Time</span>
+        <p>Within 24 hours</p>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Instagram</span>
+        <p>@santiagoswayjourney</p>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">TikTok</span>
+        <p>@santiagoswayjourney</p>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Etsy</span>
+        <p>Santiago's Way Journey</p>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Depop</span>
+        <p>@santiagoswayjourney</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><div class="logo">Santiago's Way Journey</div><p>Rooted in nature — made for the everyday.</p></div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><button onclick="showPage('cat-tops')">Tops &amp; Tees</button></li>
+        <li><button onclick="showPage('cat-bottoms')">Bottoms</button></li>
+        <li><button onclick="showPage('cat-outerwear')">Outerwear</button></li>
+        <li><button onclick="showPage('cat-accessories')">Accessories</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><button onclick="showPage('about')">About</button></li>
+        <li><button onclick="showPage('contact')">Contact</button></li>
+      </ul></div>
+      <div class="footer-col"><h5>Follow</h5><ul>
+        <li><button onclick="showToast('Coming soon!')">Instagram</button></li>
+        <li><button onclick="showToast('Coming soon!')">TikTok</button></li>
+        <li><button onclick="showToast('Coming soon!')">Etsy</button></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Santiago's Way Journey.</p></div>
+  </footer>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-// ═══════════════════════════════════════════════
-//  CONFIGURATION — change these values
-// ═══════════════════════════════════════════════
-const MASTER_PASSWORD = 'SantiagoWay@2026!Nature#1'; // 16+ chars — change this!
-const MAX_ATTEMPTS    = 3;
-const LOCKOUT_MINS    = 15;
-const SESSION_MINS    = 30;
-
-// ═══════════════════════════════════════════════
-
-// ═══════════════════════════════════════════════
-let keySeq = [];
-const SECRET = ['s','w','j','enter'];
-document.addEventListener('keydown', e => {
-  // Don't intercept if inside vault inputs
-  if (e.target.classList.contains('vault-input') || e.target.classList.contains('mfa-digit')) return;
-  keySeq.push(e.key.toLowerCase());
-  if (keySeq.length > SECRET.length) keySeq.shift();
-  if (JSON.stringify(keySeq) === JSON.stringify(SECRET)) {
-    keySeq = [];
-    openVault();
+// ─────────────────────────────────────
+// PRODUCTS — edit this array to add your
+// real products directly in the code.
+// Each product needs: name, price,
+// optional oldPrice, cat, badge ('new',
+// 'sale', or ''), and photo URL or null.
+// ─────────────────────────────────────
+const PRODUCTS = [
+  {
+    id: 1,
+    name: 'Trail Tee — Moss',
+    price: 29,
+    oldPrice: 45,
+    cat: 'Tops & Tees',
+    badge: 'new',
+    photo: null   // ← Replace null with your image URL e.g. 'images/trail-tee.jpg'
+  },
+  {
+    id: 2,
+    name: 'Way Hoodie — Bark',
+    price: 55,
+    oldPrice: 80,
+    cat: 'Outerwear',
+    badge: 'sale',
+    photo: null
+  },
+  {
+    id: 3,
+    name: 'Santiago Trousers — Sand',
+    price: 45,
+    oldPrice: null,
+    cat: 'Bottoms',
+    badge: '',
+    photo: null
+  },
+  {
+    id: 4,
+    name: 'Journey Cap — Sage',
+    price: 22,
+    oldPrice: null,
+    cat: 'Accessories',
+    badge: 'new',
+    photo: null
   }
-});
-
-// ═══════════════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════════════
-let attempts      = 0;
-let lockUntil     = 0;
-let sessionTimer  = null;
-let mfaCode       = '';
-let mfaInterval   = null;
-let mfaCountdown  = 30;
-let userIP        = 'unknown';
-let sessionStart  = '';
-let products      = [];
-const STORE_KEY   = 'swj_v2_products';
-const USERS = [
-  { name: 'Santiago', email: 'santiagoswayjourney@gmail.com', role: 'Owner', last: 'Just now', avatar: '🌿' }
 ];
 
-// ═══════════════════════════════════════════════
-//  VAULT OPEN / CLOSE
-// ═══════════════════════════════════════════════
-function openVault() {
-  detectIP();
-  document.getElementById('vault-overlay').classList.add('open');
-  showStep('password');
-  document.getElementById('inp-pass').focus();
-}
+// ─────────────────────────────────────
+// CATEGORY CONFIG
+// ─────────────────────────────────────
+const CAT_EMOJI = {
+  'Tops & Tees': '👕',
+  'Bottoms':     '👖',
+  'Outerwear':   '🧥',
+  'Accessories': '🧢'
+};
+const CAT_BG = {
+  'Tops & Tees': '#d4deca',
+  'Bottoms':     '#e0d8c8',
+  'Outerwear':   '#c8b89a',
+  'Accessories': '#c8cfc0'
+};
+const CAT_GRID = {
+  'Tops & Tees': 'grid-tops',
+  'Bottoms':     'grid-bottoms',
+  'Outerwear':   'grid-outerwear',
+  'Accessories': 'grid-accessories'
+};
 
-function closeVault() {
-  document.getElementById('vault-overlay').classList.remove('open');
-  clearStep();
-}
+// ─────────────────────────────────────
+// RENDER PRODUCT GRIDS
+// ─────────────────────────────────────
+function renderAllGrids() {
+  Object.keys(CAT_GRID).forEach(cat => {
+    const gridEl = document.getElementById(CAT_GRID[cat]);
+    if (!gridEl) return;
 
-function clearStep() {
-  document.getElementById('inp-pass').value = '';
-  document.getElementById('pass-err').textContent = '';
-  clearMFADigits();
-}
+    const items = PRODUCTS.filter(p => p.cat === cat);
 
-function showStep(name) {
-  document.querySelectorAll('.vault-step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step-' + name).classList.add('active');
-}
-
-// ═══════════════════════════════════════════════
-//  STEP 1 — MASTER PASSWORD + LOCKOUT
-// ═══════════════════════════════════════════════
-function submitPassword() {
-  const now = Date.now();
-  if (now < lockUntil) { showLockout(); return; }
-
-  const val = document.getElementById('inp-pass').value;
-  if (val.length < 16) {
-    setErr('pass-err', 'Password must be at least 16 characters.');
-    return;
-  }
-  if (val !== MASTER_PASSWORD) {
-    attempts++;
-    const left = MAX_ATTEMPTS - attempts;
-    if (attempts >= MAX_ATTEMPTS) {
-      lockUntil = now + LOCKOUT_MINS * 60 * 1000;
-      attempts = 0;
-      showLockout();
-    } else {
-      setErr('pass-err', `Incorrect password. ${left} attempt${left===1?'':'s'} remaining.`);
+    if (!items.length) {
+      gridEl.innerHTML = `
+        <div class="empty-products">
+          <span>${CAT_EMOJI[cat]}</span>
+          New pieces coming soon.<br>
+          <small style="font-size:.78rem;opacity:.55;">Check back regularly — we add new styles every week.</small>
+        </div>`;
+      return;
     }
-    return;
-  }
 
-  // Correct — advance to MFA
-  attempts = 0;
-  setErr('pass-err', '');
-  startMFA();
-  showStep('mfa');
-  document.querySelector('#step-mfa .mfa-digit').focus();
-}
-
-function showLockout() {
-  const remaining = Math.ceil((lockUntil - Date.now()) / 60000);
-  const bar = document.getElementById('lockout-bar');
-  bar.style.display = 'block';
-  bar.textContent = `⛔ Account locked. Try again in ${remaining} minute${remaining===1?'':'s'}.`;
-  document.getElementById('pass-btn').disabled = true;
-  setTimeout(() => {
-    document.getElementById('pass-btn').disabled = false;
-    bar.style.display = 'none';
-  }, lockUntil - Date.now());
-}
-
-// ═══════════════════════════════════════════════
-//  STEP 2 — TOTP MFA (simulated 6-digit TOTP)
-// ═══════════════════════════════════════════════
-function generateTOTP() {
-  // Simulated time-based code — in production replace with real TOTP (RFC 6238)
-  const period = Math.floor(Date.now() / 30000);
-  let hash = 0;
-  const seed = 'swj_totp_seed_2026' + period;
-  for (let i = 0; i < seed.length; i++) { hash = ((hash << 5) - hash) + seed.charCodeAt(i); hash |= 0; }
-  return String(Math.abs(hash) % 1000000).padStart(6, '0');
-}
-
-function startMFA() {
-  mfaCode = generateTOTP();
-  mfaCountdown = 30 - (Math.floor(Date.now() / 1000) % 30);
-  document.getElementById('mfa-ip').textContent = 'Session IP: ' + userIP;
-  clearInterval(mfaInterval);
-  mfaInterval = setInterval(() => {
-    mfaCountdown--;
-    document.getElementById('mfa-countdown').textContent = mfaCountdown;
-    if (mfaCountdown <= 0) {
-      mfaCode = generateTOTP();
-      mfaCountdown = 30;
-    }
-  }, 1000);
-  // Show code to owner for demo (remove in production — they'd use their authenticator app)
-  showToast('Demo MFA Code: ' + mfaCode);
-}
-
-function regenerateMFA() {
-  mfaCode = generateTOTP();
-  clearMFADigits();
-  setErr('mfa-err','');
-  showToast('New code: ' + mfaCode);
-}
-
-function mfaNav(input, idx) {
-  const digits = document.querySelectorAll('.mfa-digit');
-  input.value = input.value.replace(/[^0-9]/g,'');
-  if (input.value && idx < 5) digits[idx + 1].focus();
-  // Auto-submit when all filled
-  const val = Array.from(digits).map(d => d.value).join('');
-  if (val.length === 6) verifyMFA(val);
-}
-
-function verifyMFA(code) {
-  if (code === mfaCode) {
-    clearInterval(mfaInterval);
-    setErr('mfa-err','');
-    openPanel();
-  } else {
-    setErr('mfa-err', 'Incorrect code. Check your authenticator app.');
-    clearMFADigits();
-  }
-}
-
-function clearMFADigits() {
-  document.querySelectorAll('.mfa-digit').forEach(d => d.value = '');
-  const first = document.querySelector('.mfa-digit');
-  if (first) first.focus();
-}
-
-// ═══════════════════════════════════════════════
-//  STEP 3 — ADMIN PANEL
-// ═══════════════════════════════════════════════
-function openPanel() {
-  sessionStart = new Date().toLocaleTimeString();
-  document.getElementById('session-start').textContent = sessionStart;
-  document.getElementById('session-ip').textContent = userIP;
-  showStep('panel');
-  renderAdminProducts();
-  renderUsers();
-  startSessionTimer();
-}
-
-function endSession() {
-  clearTimeout(sessionTimer);
-  closeVault();
-  showToast('Session ended securely.');
-}
-
-function startSessionTimer() {
-  clearTimeout(sessionTimer);
-  sessionTimer = setTimeout(() => {
-    closeVault();
-    showToast('Session expired after ' + SESSION_MINS + ' min inactivity.');
-  }, SESSION_MINS * 60 * 1000);
-}
-
-// Reset timer on any vault interaction
-document.getElementById('vault-overlay').addEventListener('click', () => {
-  if (sessionTimer) startSessionTimer();
-});
-
-// ═══════════════════════════════════════════════
-//  TABS
-// ═══════════════════════════════════════════════
-function switchTab(name, btn) {
-  document.querySelectorAll('.vault-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.vault-tab-content').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-' + name).classList.add('active');
-}
-
-// ═══════════════════════════════════════════════
-//  PRODUCTS
-// ═══════════════════════════════════════════════
-function loadProducts() {
-  try {
-    const s = localStorage.getItem(STORE_KEY);
-    products = s ? JSON.parse(s) : defaults();
-  } catch(e) { products = defaults(); }
-  renderProducts();
-}
-
-function saveProducts() {
-  localStorage.setItem(STORE_KEY, JSON.stringify(products));
-}
-
-function defaults() {
-  return [
-    {id:1,name:'Trail Tee — Moss',price:29,oldPrice:45,cat:'Tops & Tees',badge:'new',photo:null},
-    {id:2,name:'Way Hoodie — Bark',price:55,oldPrice:80,cat:'Outerwear',badge:'sale',photo:null},
-    {id:3,name:'Santiago Trousers — Sand',price:45,oldPrice:null,cat:'Bottoms',badge:'',photo:null},
-    {id:4,name:'Journey Cap — Sage',price:22,oldPrice:null,cat:'Accessories',badge:'new',photo:null}
-  ];
-}
-
-const emojis = ['🌿','🍂','🌲','🪨','👕','🧥'];
-const bgMap  = {'Tops & Tees':'#d4deca','Bottoms':'#e0d8c8','Outerwear':'#c8b89a','Accessories':'#c8cfc0'};
-
-function renderProducts() {
-  const g = document.getElementById('products-grid');
-  if (!g) return;
-  if (!products.length) { g.innerHTML='<div class="empty-products">No products yet. Add your first one in the admin panel.</div>'; return; }
-  g.innerHTML = products.map((p,i)=>`
-    <div class="product-card">
-      <div class="product-visual" style="background:${bgMap[p.cat]||'#d4deca'};">
-        ${p.badge?`<span class="product-tag${p.badge==='sale'?' sale':''}">${p.badge==='new'?'New':'Sale'}</span>`:''}
-        ${p.photo?`<img src="${p.photo}" alt="${p.name}">`:`<div class="product-emoji">${emojis[i%emojis.length]}</div>`}
-      </div>
-      <div class="product-info">
-        <h4>${p.name}</h4>
-        <div class="product-meta">
-          <div><span class="product-price">$${p.price}</span>${p.oldPrice?`<span class="product-old">$${p.oldPrice}</span>`:''}</div>
-          <button class="add-btn" onclick="showToast('${p.name.replace(/'/g,"\\'")} — added to bag')">Add</button>
+    gridEl.innerHTML = items.map(p => `
+      <div class="product-card">
+        <div class="product-visual" style="background:${CAT_BG[p.cat]};">
+          ${p.badge ? `<span class="product-tag${p.badge === 'sale' ? ' sale' : ''}">${p.badge === 'new' ? 'New' : 'Sale'}</span>` : ''}
+          ${p.photo
+            ? `<img src="${p.photo}" alt="${p.name}" loading="lazy">`
+            : `<div class="product-emoji" aria-hidden="true">${CAT_EMOJI[p.cat]}</div>`}
         </div>
-      </div>
-    </div>`).join('');
+        <div class="product-info">
+          <h4>${p.name}</h4>
+          <div class="product-meta">
+            <div>
+              <span class="product-price">$${p.price}</span>
+              ${p.oldPrice ? `<span class="product-old">$${p.oldPrice}</span>` : ''}
+            </div>
+            <button class="add-btn" onclick="showToast('${p.name.replace(/'/g, "\\'")} — added to bag')">Add</button>
+          </div>
+        </div>
+      </div>`).join('');
+  });
 }
 
-function renderAdminProducts() {
-  const l = document.getElementById('ap-product-list');
-  if (!l) return;
-  if (!products.length) { l.innerHTML='<p style="font-size:.78rem;color:rgba(160,150,130,.5);">No products yet.</p>'; return; }
-  l.innerHTML = products.map((p,i)=>`
-    <div class="ap-product-item">
-      ${p.photo?`<img class="ap-thumb" src="${p.photo}" alt="">`:`<div class="ap-thumb-ph">${emojis[i%emojis.length]}</div>`}
-      <div class="ap-details"><strong>${p.name}</strong><span>$${p.price}${p.oldPrice?' · was $'+p.oldPrice:''} · ${p.cat}${p.badge?' · '+p.badge.toUpperCase():''}</span></div>
-      <div class="ap-actions">
-        <button class="ap-btn mark-new" onclick="toggleBadge(${p.id},'new')" title="${p.badge==='new'?'Remove New':'Mark New'}">New</button>
-        <button class="ap-btn mark-sale" onclick="toggleBadge(${p.id},'sale')" title="${p.badge==='sale'?'Remove Sale':'Mark Sale'}">Sale</button>
-        <button class="ap-btn edit-p" onclick="editProduct(${p.id})">Edit</button>
-        <button class="ap-btn del-p" onclick="removeProduct(${p.id})">Remove</button>
-      </div>
-    </div>`).join('');
-}
-
-function saveProduct() {
-  const name  = document.getElementById('p-name').value.trim();
-  const price = parseFloat(document.getElementById('p-price').value);
-  const old   = parseFloat(document.getElementById('p-oldprice').value)||null;
-  const cat   = document.getElementById('p-cat').value;
-  const badge = document.getElementById('p-badge').value;
-  const editId= document.getElementById('edit-id').value;
-  const file  = document.getElementById('p-photo').files[0];
-
-  if (!name||!price) { showToast('Name and price are required.'); return; }
-
-  const proceed = photo => {
-    if (editId) {
-      const i = products.findIndex(p=>p.id==editId);
-      if (i>-1){ products[i]={...products[i],name,price,oldPrice:old,cat,badge}; if(photo)products[i].photo=photo; }
-      showToast('Product updated.');
-      cancelEdit();
-    } else {
-      products.push({id:Date.now(),name,price,oldPrice:old,cat,badge,photo:photo||null});
-      showToast('Product added.');
-      clearForm();
-    }
-    saveProducts(); renderProducts(); renderAdminProducts();
-  };
-
-  if (file) { const r=new FileReader(); r.onload=e=>proceed(e.target.result); r.readAsDataURL(file); }
-  else proceed(null);
-}
-
-function editProduct(id) {
-  const p = products.find(x=>x.id===id); if(!p) return;
-  document.getElementById('edit-id').value=p.id;
-  document.getElementById('p-name').value=p.name;
-  document.getElementById('p-price').value=p.price;
-  document.getElementById('p-oldprice').value=p.oldPrice||'';
-  document.getElementById('p-cat').value=p.cat;
-  document.getElementById('p-badge').value=p.badge||'';
-  document.getElementById('p-photo').value='';
-  document.getElementById('ap-form-title').textContent='Edit Product';
-  document.getElementById('ap-cancel').style.display='inline-block';
-  document.getElementById('ap-form-title').scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-
-function cancelEdit() {
-  document.getElementById('edit-id').value='';
-  document.getElementById('ap-form-title').textContent='Add New Product';
-  document.getElementById('ap-cancel').style.display='none';
-  clearForm();
-}
-
-function clearForm() {
-  ['p-name','p-price','p-oldprice','p-photo'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('p-badge').value='';
-  document.getElementById('p-cat').value='Tops & Tees';
-}
-
-function removeProduct(id) {
-  products=products.filter(p=>p.id!==id);
-  saveProducts(); renderProducts(); renderAdminProducts();
-  showToast('Product removed.');
-}
-
-function toggleBadge(id,badge) {
-  const p=products.find(x=>x.id===id); if(!p) return;
-  p.badge=p.badge===badge?'':badge;
-  saveProducts(); renderProducts(); renderAdminProducts();
-  showToast(p.badge?`Marked as ${p.badge}.`:'Badge removed.');
-}
-
-// ═══════════════════════════════════════════════
-//  USERS
-// ═══════════════════════════════════════════════
-function renderUsers() {
-  document.getElementById('users-list').innerHTML = USERS.map(u=>`
-    <div class="user-row">
-      <div class="user-avatar">${u.avatar}</div>
-      <div class="user-info"><strong>${u.name}</strong><span>${u.email} · Last login: ${u.last}</span></div>
-      <span class="user-role">${u.role}</span>
-    </div>`).join('');
-}
-
-// ═══════════════════════════════════════════════
-//  IP DETECTION
-// ═══════════════════════════════════════════════
-function detectIP() {
-  fetch('https://api.ipify.org?format=json')
-    .then(r=>r.json()).then(d=>{
-      userIP=d.ip||'unknown';
-      const el=document.getElementById('ip-display');
-      if(el) el.textContent='Session IP: '+userIP;
-    }).catch(()=>{ userIP='private network'; });
-}
-
-// ═══════════════════════════════════════════════
-//  PAGE ROUTING
-// ═══════════════════════════════════════════════
+// ─────────────────────────────────────
+// PAGE NAVIGATION
+// ─────────────────────────────────────
 function showPage(name) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (target) target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function scrollTo(id) {
-  setTimeout(()=>{
-    const el=document.getElementById(id);
-    if(el) el.scrollIntoView({behavior:'smooth'});
-  },120);
+// Scroll to an element ID on the current page
+function scrollToId(id) {
+  // Small delay so showPage can complete first if called together
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 80; // nav height
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }, 80);
 }
 
-// ═══════════════════════════════════════════════
-//  HELPERS
-// ═══════════════════════════════════════════════
-function setErr(id, msg) { document.getElementById(id).textContent=msg; }
-
+// ─────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────
+let toastTimer;
 function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ═══════════════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════════════
-loadProducts();
+// ─────────────────────────────────────
+// INIT
+// ─────────────────────────────────────
+renderAllGrids();
 </script>
 </body>
 </html>
