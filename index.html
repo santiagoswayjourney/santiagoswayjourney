@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Santiago's Way Journey — Simple, honest clothing rooted in the natural world of pilgrimage.">
+<meta name="description" content="Santiago's Way Journey — Simple, honest clothing rooted in the natural world.">
 <title>Santiago's Way Journey</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -144,7 +144,7 @@
   }
   .btn-ghost:hover { color:var(--moss); border-bottom-color:var(--moss); }
   .hero-right { position:relative; overflow:hidden; background:var(--sky); }
-  .hero-right img { width:100%; height:100%; object-fit:cover; display:block; }
+  .hero-right svg { width:100%; height:100%; position:absolute; inset:0; }
 
   /* ── CATEGORIES (Home) ── */
   .categories { background:var(--cream); padding:6rem 3rem; }
@@ -407,7 +407,34 @@
       </div>
     </div>
     <div class="hero-right" aria-hidden="true">
-      <img src="images/startpicture.jpg" alt="Landscape with sun, trees, and hills" />
+      <svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#dce8d4"/>
+            <stop offset="100%" stop-color="#c8d5c0"/>
+          </linearGradient>
+          <linearGradient id="hillG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6b7c52"/>
+            <stop offset="100%" stop-color="#4a5c3a"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="800" fill="url(#skyG)"/>
+        <circle cx="430" cy="155" r="58" fill="#e8d8b0" opacity=".45"/>
+        <circle cx="430" cy="155" r="40" fill="#e8d0a0" opacity=".5"/>
+        <path d="M0,490 Q80,370 170,410 Q260,345 340,385 Q420,310 500,365 Q550,330 600,355 L600,800 L0,800Z" fill="#a89880" opacity=".28"/>
+        <path d="M0,560 Q110,450 220,490 Q330,410 440,465 Q520,410 600,440 L600,800 L0,800Z" fill="#7a8c6a" opacity=".55"/>
+        <path d="M0,640 Q150,535 310,572 Q460,508 600,548 L600,800 L0,800Z" fill="url(#hillG)"/>
+        <rect x="0" y="730" width="600" height="70" fill="#3b2a1a" opacity=".45"/>
+        <rect x="78" y="505" width="9" height="148" fill="#3b2a1a" rx="4"/>
+        <ellipse cx="82" cy="485" rx="36" ry="52" fill="#4a5c3a"/>
+        <ellipse cx="66" cy="516" rx="24" ry="36" fill="#5c6e4c"/>
+        <rect x="492" y="485" width="11" height="155" fill="#3b2a1a" rx="5"/>
+        <ellipse cx="497" cy="462" rx="42" ry="60" fill="#4a5c3a"/>
+        <ellipse cx="477" cy="495" rx="26" ry="38" fill="#5c6e4c"/>
+        <rect x="288" y="568" width="7" height="88" fill="#3b2a1a" rx="3"/>
+        <ellipse cx="292" cy="553" rx="26" ry="38" fill="#5c6e4c"/>
+        <path d="M258,800 Q278,724 292,685 Q306,645 298,605" fill="none" stroke="#d4c4a8" stroke-width="16" opacity=".28" stroke-linecap="round"/>
+      </svg>
     </div>
   </section>
 
