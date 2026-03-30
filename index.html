@@ -860,6 +860,8 @@
 // 'sale', or ''), and photo URL or null.
 // ─────────────────────────────────────
 const PRODUCTS = [
+
+// tops & tees will range id's from 1-4, bottoms 5-8, outerwear 9-12, accessories 13-16. This is just to keep things organized and easy to manage as you add more products. You can change this structure if you want, just make sure to update the renderAllGrids function accordingly.
   {
     id: 1,
     name: 'Trail Tee — Moss',
@@ -869,8 +871,22 @@ const PRODUCTS = [
     badge: 'new',
     photo: null   // ← Replace null with your image URL e.g. 'images/trail-tee.jpg'
   },
+
+  { 
+    id : 2,
+    name: 'Pathway — Grass Green',
+    price: 29,
+    oldPrice: 45,
+    cat: 'Tops & Tees',
+    badge: 'new',
+    photo: 'images/Third Design.jpg'
+  },
+  //---- above is the section for tops & tees 
+
+
+
   {
-    id: 2,
+    id : 5,
     name: 'Way Hoodie — Bark',
     price: 55,
     oldPrice: 80,
@@ -878,8 +894,12 @@ const PRODUCTS = [
     badge: 'sale',
     photo: null
   },
+
+  //---- above is the section for outerwear
+
+
   {
-    id: 3,
+    id: 9,
     name: 'Santiago Trousers — Sand',
     price: 45,
     oldPrice: null,
@@ -887,15 +907,22 @@ const PRODUCTS = [
     badge: '',
     photo: null
   },
+
+  //---- above is the section for bottoms
+
+
   {
-    id: 4,
+    id: 13,
     name: 'Journey Cap — Sage',
     price: 22,
-    oldPrice: null,
+    oldPrice: 35,
     cat: 'Accessories',
     badge: 'new',
     photo: null
   }
+
+  //---- above is the section for accessories
+  
 ];
 
 // ─────────────────────────────────────
